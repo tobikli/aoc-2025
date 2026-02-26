@@ -1,13 +1,14 @@
 #![allow(unused)]
 mod advent1;
 mod advent2;
+mod advent3;
 use std::env;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
     if let Some(input) = args.get(1) {
         if let Ok(mut lines) = read_lines(input) {
-            advent2::main(lines);
+            advent3::main(lines);
         } else {
             println!("Error when reading input!")
         }
