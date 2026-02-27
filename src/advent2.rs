@@ -1,9 +1,9 @@
 use std::fs::File;
 use std::io::{BufReader, Lines};
 
-pub fn main(mut lines: Lines<BufReader<File>>) {
+pub fn main(lines: Vec<String>) {
     println!("Advent of Code Day 2");
-    let single_line = lines.next().unwrap().unwrap();
+    let single_line = lines.get(0).unwrap();
     let ranges = single_line.split(",");
     let mut sum = 0;
     for range in ranges {

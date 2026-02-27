@@ -8,7 +8,8 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     if let Some(input) = args.get(1) {
         if let Ok(mut lines) = read_lines(input) {
-            advent3::main(lines);
+            let lines_vec: Vec<String> = lines.collect::<Result<_, _>>().unwrap();
+            advent1::main(lines_vec);
         } else {
             println!("Error when reading input!")
         }
