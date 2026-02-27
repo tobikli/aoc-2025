@@ -9,7 +9,7 @@ fn main() {
     if let Some(input) = args.get(1) {
         if let Ok(mut lines) = read_lines(input) {
             let lines_vec: Vec<String> = lines.collect::<Result<_, _>>().unwrap();
-            advent2::main(lines_vec);
+            advent3::main(lines_vec);
         } else {
             println!("Error when reading input!")
         }
