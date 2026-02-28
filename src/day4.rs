@@ -1,8 +1,3 @@
-use std::fs::File;
-use std::io::{BufReader, Lines};
-use std::str::Chars;
-use std::thread::current;
-
 pub fn main(lines: Vec<String>) {
     println!("Day 4");
     let mut sum1 = 0;
@@ -13,9 +8,9 @@ pub fn main(lines: Vec<String>) {
         last_sum2 = sum2;
         let mut new_coordinates: Vec<Vec<char>> = coordinates.clone();
         for y in 0..coordinates.len() {
-            for x in 0..coordinates.get(y).unwrap().len() {
+            for x in 0..coordinates.get(y).expect("Input is corrupted!").len() {
                 let result = roll_is_accessible(&coordinates, x as isize, y as isize);
-                if (last_sum2 == 0) {
+                if last_sum2 == 0 {
                     sum1 += result;
                 }
                 sum2 += result;
@@ -33,9 +28,9 @@ pub fn main(lines: Vec<String>) {
 fn roll_is_accessible(coordinates: &Vec<Vec<char>>, x: isize, y: isize) -> isize {
     if coordinates
         .get(y as usize)
-        .unwrap()
+        .expect("Input is corrupted!")
         .get(x as usize)
-        .unwrap()
+        .expect("Input is corrupted!")
         != &'@'
     {
         return 0;

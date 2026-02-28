@@ -1,6 +1,3 @@
-use std::fs::File;
-use std::io::{BufReader, Lines};
-
 pub fn main(lines: Vec<String>) {
     println!("Day 2");
     let single_line = lines.get(0).unwrap();

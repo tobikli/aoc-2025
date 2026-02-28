@@ -1,6 +1,3 @@
-use std::fs::File;
-use std::io::{BufReader, Lines};
-
 pub fn main(lines: Vec<String>) {
     println!("Day 1");
     let ring_size: i32 = 100;
@@ -8,9 +5,9 @@ pub fn main(lines: Vec<String>) {
     let mut count_1: u32 = 0;
     let mut count_2: u32 = 0;
     for line in &lines {
-        let direction = line.chars().next().unwrap();
+        let direction = line.chars().next().expect("Input is corrupted!");
         let amount_string = line.split_at(direction.len_utf8()).1;
-        let mut amount: i32 = amount_string.parse::<i32>().unwrap();
+        let mut amount: i32 = amount_string.parse::<i32>().expect("Input is corrupted!");
         if direction == 'L' {
             amount *= -1;
         }

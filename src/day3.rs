@@ -1,7 +1,3 @@
-use std::fs::File;
-use std::io::{BufReader, Lines};
-use std::thread::current;
-
 pub fn main(lines: Vec<String>) {
     println!("Day 3");
     let mut sum1 = 0;
@@ -19,10 +15,9 @@ fn get_max_joltage_part1(line: &String) -> u32 {
     let mut max = 0;
     for i in 0..chars.len() {
         for j in (i + 1)..chars.len() {
-            let mut current_string: String =
-                String::from(chars.get(i).unwrap().to_string());
-            current_string.push(*chars.get(j).unwrap());
-            let current: u32 = current_string.parse::<u32>().unwrap();
+            let mut current_string: String = String::from(chars.get(i).unwrap().to_string());
+            current_string.push(*chars.get(j).expect("Input is corrupted!"));
+            let current: u32 = current_string.parse::<u32>().expect("Input is corrupted!");
             if current > max {
                 max = current;
             }
@@ -42,13 +37,13 @@ fn get_max_joltage_part2(line: &String) -> u64 {
         for i in
             (last_position + 1)..(line_length - battery_size + 1 + max.chars().count()) as isize
         {
-            let mut current_string: String = String::from(
+            let current_string: String = String::from(
                 chars
                     .get(i as usize)
-                    .unwrap()
+                    .expect("Input is corrupted!")
                     .to_string(),
             );
-            let current: u32 = current_string.parse::<u32>().unwrap();
+            let current: u32 = current_string.parse::<u32>().expect("Input is corrupted!");
             if current > current_max {
                 last_position = i;
                 current_max = current;
@@ -56,5 +51,5 @@ fn get_max_joltage_part2(line: &String) -> u64 {
         }
         max.push_str(&current_max.to_string());
     }
-    return max.parse::<u64>().unwrap();
+    return max.parse::<u64>().expect("Input is corrupted!");
 }
