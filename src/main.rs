@@ -1,7 +1,8 @@
 #![allow(unused)]
-mod advent1;
-mod advent2;
-mod advent3;
+mod day1;
+mod day2;
+mod day3;
+mod day4;
 use std::env;
 
 fn main() {
@@ -9,7 +10,8 @@ fn main() {
     if let Some(input) = args.get(1) {
         if let Ok(mut lines) = read_lines(input) {
             let lines_vec: Vec<String> = lines.collect::<Result<_, _>>().unwrap();
-            advent3::main(lines_vec);
+            print!("Advent of Code ");
+            day4::main(lines_vec);
         } else {
             println!("Error when reading input!")
         }
