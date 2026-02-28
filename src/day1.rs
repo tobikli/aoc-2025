@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io::{BufReader, Lines};
 
 pub fn main(lines: Vec<String>) {
-    println!("Advent of Code Day 1");
+    println!("Day 1");
     let ring_size: i32 = 100;
     let mut pointer: i32 = 50;
     let mut count_1: u32 = 0;
@@ -33,6 +33,6 @@ pub fn main(lines: Vec<String>) {
             count_1 += 1;
         }
     }
-    println!("Result Part1: {}", count_1);
-    println!("Result Part2: {}", (count_1 + count_2));
+    println!("Result Part 1: {}", count_1);
+    println!("Result Part 2: {}", (count_1 + count_2));
 }

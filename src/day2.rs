@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io::{BufReader, Lines};
 
 pub fn main(lines: Vec<String>) {
-    println!("Advent of Code Day 2");
+    println!("Day 2");
     let single_line = lines.get(0).unwrap();
     let ranges = single_line.split(",");
     let mut sum1 = 0;
@@ -22,8 +22,8 @@ pub fn main(lines: Vec<String>) {
             }
         }
     }
-    println!("Result Part1: {}", sum1);
-    println!("Result Part2: {}", sum2);
+    println!("Result Part 1: {}", sum1);
+    println!("Result Part 2: {}", sum2);
 }
 
 fn number_is_invalid_part1(input: u64) -> bool {
