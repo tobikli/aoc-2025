@@ -2,6 +2,7 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 use std::env;
 use std::fs::File;
 use std::io::{self, BufRead};
@@ -25,6 +26,7 @@ fn main() {
             2 => day2::main(lines_vec),
             3 => day3::main(lines_vec),
             4 => day4::main(lines_vec),
+            5 => day5::main(lines_vec),
             _ => eprintln!("Day {} is not (yet) implemented!", day),
         }
     } else {
