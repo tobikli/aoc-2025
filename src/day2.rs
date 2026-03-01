@@ -7,18 +7,18 @@
  *         substring, we check if ALL substrings following the first are equal.
  */
 
-pub fn main(lines: Vec<String>) {
+pub fn solve(lines: Vec<String>) -> (usize, usize) {
     println!("Day 2");
     let single_line = lines.get(0).unwrap();
     let ranges = single_line.split(",");
-    let mut sum1 = 0;
-    let mut sum2 = 0;
+    let mut sum1: usize = 0;
+    let mut sum2: usize = 0;
     for range in ranges {
         let mut split = range.split("-");
         let start_string = split.next().unwrap();
         let end_string = split.next().unwrap();
-        let start: u64 = start_string.parse::<u64>().unwrap();
-        let end: u64 = end_string.parse::<u64>().unwrap();
+        let start: usize = start_string.parse::<usize>().unwrap();
+        let end: usize = end_string.parse::<usize>().unwrap();
         for n in start..=end {
             if number_is_invalid_part1(n) {
                 sum1 += n;
@@ -28,11 +28,10 @@ pub fn main(lines: Vec<String>) {
             }
         }
     }
-    println!("Result Part 1: {}", sum1);
-    println!("Result Part 2: {}", sum2);
+    return (sum1, sum2);
 }
 
-fn number_is_invalid_part1(input: u64) -> bool {
+fn number_is_invalid_part1(input: usize) -> bool {
     let input_string = input.to_string();
     let length = input_string.chars().count();
     if length % 2 != 0 {
@@ -42,7 +41,7 @@ fn number_is_invalid_part1(input: u64) -> bool {
     return split.0 == split.1;
 }
 
-fn number_is_invalid_part2(input: u64) -> bool {
+fn number_is_invalid_part2(input: usize) -> bool {
     let input_string = input.to_string();
     let length = input_string.chars().count();
     for i in 1..=length / 2 {

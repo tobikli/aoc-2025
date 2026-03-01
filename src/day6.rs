@@ -11,12 +11,11 @@
 
 use regex::Regex;
 
-pub fn main(lines: Vec<String>) {
+pub fn solve(lines: Vec<String>) -> (usize, usize) {
     println!("Day 6");
     let sum1 = get_sum_part1(&lines);
     let sum2 = get_sum_part2(&lines);
-    println!("Result Part 1: {}", sum1);
-    println!("Result Part 2: {}", sum2);
+    return (sum1, sum2);
 }
 
 fn get_sum_part1(lines: &Vec<String>) -> usize {

@@ -6,7 +6,7 @@
  *         digit for the reamining digit of the battery. As the largest digit will always have the most impact, all other digits are less important.
  */
 
-pub fn main(lines: Vec<String>) {
+pub fn solve(lines: Vec<String>) -> (usize, usize) {
     println!("Day 3");
     let mut sum1 = 0;
     let mut sum2 = 0;
@@ -14,16 +14,15 @@ pub fn main(lines: Vec<String>) {
         sum1 += get_max_joltage_part1(line);
         sum2 += get_max_joltage_part2(line);
     }
-    println!("Result Part 1: {}", sum1);
-    println!("Result Part 2: {}", sum2);
+    return (sum1, sum2);
 }
 
-fn get_max_joltage_part1(line: &String) -> u32 {
+fn get_max_joltage_part1(line: &String) -> usize {
     let chars: Vec<char> = line.chars().collect();
     let mut max_1 = (0, 0);
     for i in 0..chars.len() - 1 {
         let current_string: String = String::from(chars.get(i).unwrap().to_string());
-        let current: u32 = current_string.parse::<u32>().unwrap();
+        let current: usize = current_string.parse::<usize>().unwrap();
         if current > max_1.0 {
             max_1 = (current, i);
         }
@@ -31,7 +30,7 @@ fn get_max_joltage_part1(line: &String) -> u32 {
     let mut max_2 = 0;
     for j in (max_1.1 + 1)..chars.len() {
         let current_string: String = String::from(chars.get(j).unwrap().to_string());
-        let current: u32 = current_string.parse::<u32>().unwrap();
+        let current: usize = current_string.parse::<usize>().unwrap();
         if current > max_2 {
             max_2 = current;
         }
@@ -39,7 +38,7 @@ fn get_max_joltage_part1(line: &String) -> u32 {
     return max_1.0 * 10 + max_2;
 }
 
-fn get_max_joltage_part2(line: &String) -> u64 {
+fn get_max_joltage_part2(line: &String) -> usize {
     let chars: Vec<char> = line.chars().collect();
     let line_length = chars.len();
     let mut max: String = "".to_string();
@@ -51,7 +50,7 @@ fn get_max_joltage_part2(line: &String) -> u64 {
             (last_position + 1)..(line_length - battery_size + 1 + max.chars().count()) as isize
         {
             let current_string: String = String::from(chars.get(i as usize).unwrap().to_string());
-            let current: u32 = current_string.parse::<u32>().unwrap();
+            let current: usize = current_string.parse::<usize>().unwrap();
             if current > current_max {
                 last_position = i;
                 current_max = current;
@@ -59,5 +58,5 @@ fn get_max_joltage_part2(line: &String) -> u64 {
         }
         max.push_str(&current_max.to_string());
     }
-    return max.parse::<u64>().unwrap();
+    return max.parse::<usize>().unwrap();
 }

@@ -6,7 +6,7 @@
  *         removed, we consider all possible rolls as removed.
  */
 
-pub fn main(lines: Vec<String>) {
+pub fn solve(lines: Vec<String>) -> (usize, usize) {
     println!("Day 4");
     let mut sum1 = 0;
     let mut sum2 = 0;
@@ -29,8 +29,7 @@ pub fn main(lines: Vec<String>) {
         }
         coordinates = new_coordinates;
     }
-    println!("Result Part 1: {}", sum1);
-    println!("Result Part 2: {}", sum2);
+    return (sum1 as usize, sum2 as usize);
 }
 
 fn roll_is_accessible(coordinates: &Vec<Vec<char>>, x: isize, y: isize) -> isize {

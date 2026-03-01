@@ -10,7 +10,7 @@
 
 use std::collections::HashSet;
 
-pub fn main(lines: Vec<String>) {
+pub fn solve(lines: Vec<String>) -> (usize, usize) {
     println!("Day 5");
     let cut = lines.iter().position(|x| x == "").unwrap();
     let mut fresh_ingredients_list = lines.clone();
@@ -18,8 +18,7 @@ pub fn main(lines: Vec<String>) {
     all_ingredients_list = all_ingredients_list.split_off(1);
     let sum1 = parse_all_ingredients(&all_ingredients_list, &fresh_ingredients_list);
     let sum2 = get_amount_of_fresh_ingredients(&fresh_ingredients_list);
-    println!("Result Part 1: {}", sum1);
-    println!("Result Part 2: {}", sum2);
+    return (sum1, sum2);
 }
 
 fn id_is_fresh(lines: &Vec<String>, id: usize) -> bool {

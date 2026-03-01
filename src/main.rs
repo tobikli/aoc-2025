@@ -1,18 +1,15 @@
-mod day1;
-mod day2;
-mod day3;
-mod day4;
-mod day5;
-mod day6;
 use std::env;
-use std::fs::File;
-use std::io::{self, BufRead};
-use std::path::Path;
 use std::process::exit;
+use aoc25::read_lines;
+use aoc25::day1;
+use aoc25::day2;
+use aoc25::day3;
+use aoc25::day4;
+use aoc25::day5;
+use aoc25::day6;
 
 fn main() {
     println!("Advent of Code 2025 in Rust © Tobias Klingenberg");
-    println!("Program will panic on incorrect input!");
     let args: Vec<String> = env::args().collect();
     if args.len() != 3 {
         help(&args[0]);
@@ -22,15 +19,17 @@ fn main() {
     let input = args.get(2).unwrap();
     if let Ok(lines) = read_lines(input) {
         let lines_vec: Vec<String> = lines.collect::<Result<_, _>>().unwrap();
-        match day {
-            1 => day1::main(lines_vec),
-            2 => day2::main(lines_vec),
-            3 => day3::main(lines_vec),
-            4 => day4::main(lines_vec),
-            5 => day5::main(lines_vec),
-            6 => day6::main(lines_vec),
-            _ => eprintln!("Day {} is not (yet) implemented!", day),
-        }
+        let (part1, part2) = match day {
+            1 => day1::solve(lines_vec),
+            2 => day2::solve(lines_vec),
+            3 => day3::solve(lines_vec),
+            4 => day4::solve(lines_vec),
+            5 => day5::solve(lines_vec),
+            6 => day6::solve(lines_vec),
+            _ => panic!("Day {} is not (yet) implemented!", day),
+        };
+        println!("Result Part 1: {}", part1);
+        println!("Result Part 2: {}", part2);
     } else {
         eprintln!("Error when reading input!")
     }
@@ -38,12 +37,4 @@ fn main() {
 
 fn help(program: &String) {
     eprintln!("Usage: {} <day> <input.txt>", program);
-}
-
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where
-    P: AsRef<Path>,
-{
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
 }
