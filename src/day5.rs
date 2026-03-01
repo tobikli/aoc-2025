@@ -1,3 +1,13 @@
+/*
+ * Advent of Code Day 5
+ * Part 1: For each ingredient in the second list, we parse it through the first list and check if it is in any of the ranges.
+ * Part 2: To get the amount of fresh ingredients with a possibility of overlapping, we store each range in a HashSet. For each
+ *         new range, we check if it overlaps any old one completely or at least at one of the sides. We then create a new range
+ *         with the new max and min of the range and replace it with the old one. As new ranges can also overlap, we check if we
+ *         merged two ranges in any iteration. If a iteration didn't merge anything, we consider everthing as merged. Lastly, we
+ *         can simply substract each ranges boundaries to get the amount.
+ */
+
 use std::collections::HashSet;
 
 pub fn main(lines: Vec<String>) {

@@ -1,3 +1,11 @@
+/*
+ * Advent of Code Day 3
+ * Part 1: For each line, we find the largest digit in the first n-1 digits (n = line_length). We then save the index i of the max and find the
+ *         largest digit in i..n.
+ * Part 2: Similar attempt, but we define the battery size dynamically. Now we need to look in the first n-12 digits as we need at least 1 possible
+ *         digit for the reamining digit of the battery. As the largest digit will always have the most impact, all other digits are less important.
+ */
+
 pub fn main(lines: Vec<String>) {
     println!("Day 3");
     let mut sum1 = 0;
@@ -12,18 +20,23 @@ pub fn main(lines: Vec<String>) {
 
 fn get_max_joltage_part1(line: &String) -> u32 {
     let chars: Vec<char> = line.chars().collect();
-    let mut max = 0;
-    for i in 0..chars.len() {
-        for j in (i + 1)..chars.len() {
-            let mut current_string: String = String::from(chars.get(i).unwrap().to_string());
-            current_string.push(*chars.get(j).expect("Input is corrupted!"));
-            let current: u32 = current_string.parse::<u32>().expect("Input is corrupted!");
-            if current > max {
-                max = current;
-            }
+    let mut max_1 = (0, 0);
+    for i in 0..chars.len() - 1 {
+        let current_string: String = String::from(chars.get(i).unwrap().to_string());
+        let current: u32 = current_string.parse::<u32>().unwrap();
+        if current > max_1.0 {
+            max_1 = (current, i);
         }
     }
-    return max;
+    let mut max_2 = 0;
+    for j in (max_1.1 + 1)..chars.len() {
+        let current_string: String = String::from(chars.get(j).unwrap().to_string());
+        let current: u32 = current_string.parse::<u32>().unwrap();
+        if current > max_2 {
+            max_2 = current;
+        }
+    }
+    return max_1.0 * 10 + max_2;
 }
 
 fn get_max_joltage_part2(line: &String) -> u64 {
@@ -37,13 +50,8 @@ fn get_max_joltage_part2(line: &String) -> u64 {
         for i in
             (last_position + 1)..(line_length - battery_size + 1 + max.chars().count()) as isize
         {
-            let current_string: String = String::from(
-                chars
-                    .get(i as usize)
-                    .expect("Input is corrupted!")
-                    .to_string(),
-            );
-            let current: u32 = current_string.parse::<u32>().expect("Input is corrupted!");
+            let current_string: String = String::from(chars.get(i as usize).unwrap().to_string());
+            let current: u32 = current_string.parse::<u32>().unwrap();
             if current > current_max {
                 last_position = i;
                 current_max = current;
@@ -51,5 +59,5 @@ fn get_max_joltage_part2(line: &String) -> u64 {
         }
         max.push_str(&current_max.to_string());
     }
-    return max.parse::<u64>().expect("Input is corrupted!");
+    return max.parse::<u64>().unwrap();
 }

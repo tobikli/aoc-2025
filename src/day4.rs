@@ -1,3 +1,11 @@
+/*
+ * Advent of Code Day 4
+ * Part 1: We build a 2D matrix from the input lines. For each coordinate, we simply check if the adjacent coordinates are in bound and how many of
+ *         them are free. If its less then 4, we can return 1.
+ * Part 2: We simply repeat the solution from part 1 and keep track if we remove new rolls. We replace removed rolls with '.'. Once no new rolls are
+ *         removed, we consider all possible rolls as removed.
+ */
+
 pub fn main(lines: Vec<String>) {
     println!("Day 4");
     let mut sum1 = 0;
@@ -8,7 +16,7 @@ pub fn main(lines: Vec<String>) {
         last_sum2 = sum2;
         let mut new_coordinates: Vec<Vec<char>> = coordinates.clone();
         for y in 0..coordinates.len() {
-            for x in 0..coordinates.get(y).expect("Input is corrupted!").len() {
+            for x in 0..coordinates.get(y).unwrap().len() {
                 let result = roll_is_accessible(&coordinates, x as isize, y as isize);
                 if last_sum2 == 0 {
                     sum1 += result;
@@ -28,9 +36,9 @@ pub fn main(lines: Vec<String>) {
 fn roll_is_accessible(coordinates: &Vec<Vec<char>>, x: isize, y: isize) -> isize {
     if coordinates
         .get(y as usize)
-        .expect("Input is corrupted!")
+        .unwrap()
         .get(x as usize)
-        .expect("Input is corrupted!")
+        .unwrap()
         != &'@'
     {
         return 0;

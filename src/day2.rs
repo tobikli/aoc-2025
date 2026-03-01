@@ -1,3 +1,12 @@
+/*
+ * Advent of Code Day 2
+ * Part 1: We split the line at ',' and get the ranges by splitting again at '-'. A number is invalid if any sequence of digits is repeated
+ *         exactly twice. There we can simply let it iterate over the range and check if the number as string can be splitted in half and if
+ *         both halfs are identical.
+ * Part 2: The digit sequence now can be repeated at LEAST two times. Therefore, we can iterate over the first half of the number and for each
+ *         substring, we check if ALL substrings following the first are equal.
+ */
+
 pub fn main(lines: Vec<String>) {
     println!("Day 2");
     let single_line = lines.get(0).unwrap();
