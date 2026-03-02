@@ -7,6 +7,7 @@ use aoc25::day3;
 use aoc25::day4;
 use aoc25::day5;
 use aoc25::day6;
+use aoc25::day7;
 
 fn main() {
     println!("Advent of Code 2025 in Rust © Tobias Klingenberg");
@@ -26,6 +27,7 @@ fn main() {
             4 => day4::solve(lines_vec),
             5 => day5::solve(lines_vec),
             6 => day6::solve(lines_vec),
+            7 => day7::solve(lines_vec),
             _ => panic!("Day {} is not (yet) implemented!", day),
         };
         println!("Result Part 1: {}", part1);

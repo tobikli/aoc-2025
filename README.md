@@ -9,3 +9,9 @@ Challenges provided by [Eric Wastl](https://github.com/topaz)
 ```bash
 Usage: cargo run {day} {input}
 ```
+
+Test implementations using the provided input using
+
+```bash
+cargo test test_solutions -- --nocapture
+```

@@ -4,6 +4,7 @@ use aoc25::day3;
 use aoc25::day4;
 use aoc25::day5;
 use aoc25::day6;
+use aoc25::day7;
 use aoc25::read_lines;
 
 #[test]
@@ -16,6 +17,7 @@ fn test_solutions() {
         day4::solve,
         day5::solve,
         day6::solve,
+        day7::solve,
     ];
     let solutions: Vec<(usize, usize)> = vec![
         (1055, 6386),
@@ -24,8 +26,9 @@ fn test_solutions() {
         (1578, 10132),
         (782, 353863745078671),
         (4719804927602, 9608327000261),
+        (1628, 27055852018812),
     ];
-    let days = 6;
+    let days = 7;
     // =================================
     for i in 1..=days {
         let file_path = format!("input/input{}", i);
