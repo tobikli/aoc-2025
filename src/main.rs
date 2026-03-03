@@ -1,6 +1,3 @@
-use std::env;
-use std::process::exit;
-use aoc25::read_lines;
 use aoc25::day1;
 use aoc25::day2;
 use aoc25::day3;
@@ -8,6 +5,10 @@ use aoc25::day4;
 use aoc25::day5;
 use aoc25::day6;
 use aoc25::day7;
+use aoc25::day8;
+use aoc25::read_lines;
+use std::env;
+use std::process::exit;
 
 fn main() {
     println!("Advent of Code 2025 in Rust © Tobias Klingenberg");
@@ -28,6 +29,7 @@ fn main() {
             5 => day5::solve(lines_vec),
             6 => day6::solve(lines_vec),
             7 => day7::solve(lines_vec),
+            8 => day8::solve(lines_vec),
             _ => panic!("Day {} is not (yet) implemented!", day),
         };
         println!("Result Part 1: {}", part1);
